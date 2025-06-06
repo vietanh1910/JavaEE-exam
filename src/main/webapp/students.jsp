@@ -112,12 +112,19 @@
 
 
 <h2>Add New Student</h2>
-<form action="students" method="post">
+<<form action="scores" method="post">
     <input type="hidden" name="action" value="add">
-    <input type="text" name="studentCode" placeholder="Student ID">
-    <input type="text" name="fullName" placeholder="Full Name">
-    <input type="text" name="address" placeholder="Address">
-    <button type="submit">Add Student</button>
+    Student ID: <input type="text" name="studentId"><br>
+    Subject:
+    <select name="subjectId">
+        <c:forEach var="subject" items="${subjects}">
+            <option value="${subject.subjectId}">${subject.subjectName}</option>
+        </c:forEach>
+    </select><br>
+    Score 1: <input type="number" step="0.1" name="score1"><br>
+    Score 2: <input type="number" step="0.1" name="score2"><br>
+    <button type="submit">Add Score</button>
 </form>
+
 </body>
 </html>

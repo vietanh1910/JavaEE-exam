@@ -3,7 +3,9 @@ package com.example.javaeedemo.controller;
 import com.example.javaeedemo.model.Student;
 import com.example.javaeedemo.model.StudentFullInfo;
 import com.example.javaeedemo.service.StudentService;
+import com.example.javaeedemo.service.SubjectService;
 import com.example.javaeedemo.service.impl.StudentServiceImpl;
+import com.example.javaeedemo.service.impl.SubjectServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 public class StudentServlet extends HttpServlet {
 
     private StudentService studentService = new StudentServiceImpl();
+    private SubjectService subjectService = new SubjectServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<StudentFullInfo> students = studentService.getAllStudents();
         request.setAttribute("students", students);
+        request.setAttribute("subjects", subjectService.getAllSubjects());
         request.getRequestDispatcher("/students.jsp").forward(request, response);
     }
 
