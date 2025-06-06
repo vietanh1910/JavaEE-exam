@@ -5,40 +5,118 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Information System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            background-color: #4e6b4e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #4e6b4e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4e6b4e;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-top: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px #ccc;
+            width: 300px;
+        }
+
+        input[type="text"], button {
+            padding: 8px;
+            margin-top: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4e6b4e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3b523b;
+        }
+    </style>
 </head>
 <body>
 <h1>Student Information System</h1>
-
-<h2>Student List</h2>
+<h2>Student Infomation</h2>
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Student ID</th>
+        <th>Id</th>
+        <th>Student Id</th>
         <th>Student Name</th>
-        <th>Address</th>
-        <th>Action</th>
+        <th>Subject Name</th>
+        <th>Score 1</th>
+        <th>Score 2</th>
+        <th>Credit</th>
+        <th>Grade</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="student" items="${students}">
+    <c:forEach var="s" items="${students}" varStatus="loop">
         <tr>
-            <td>${student.studentId}</td>
-            <td>${student.studentCode}</td>
-            <td>${student.fullName}</td>
-            <td>${student.address}</td>
-            <td><a href="scores?studentId=${student.studentId}">View Scores</a></td>
+            <td>${loop.index + 1}</td>
+            <td>${s.studentCode}</td>
+            <td>${s.fullName}</td>
+            <td>${s.subjectName}</td>
+            <td>${s.score1}</td>
+            <td>${s.score2}</td>
+            <td>${s.credit}</td>
+            <td>${s.grade}</td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
+
 <h2>Add New Student</h2>
 <form action="students" method="post">
     <input type="hidden" name="action" value="add">
-    Student ID: <input type="text" name="studentCode"><br>
-    Full Name: <input type="text" name="fullName"><br>
-    Address: <input type="text" name="address"><br>
+    <input type="text" name="studentCode" placeholder="Student ID">
+    <input type="text" name="fullName" placeholder="Full Name">
+    <input type="text" name="address" placeholder="Address">
     <button type="submit">Add Student</button>
 </form>
 </body>

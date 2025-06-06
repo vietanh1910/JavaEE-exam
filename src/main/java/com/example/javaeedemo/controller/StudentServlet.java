@@ -1,6 +1,7 @@
 package com.example.javaeedemo.controller;
 
 import com.example.javaeedemo.model.Student;
+import com.example.javaeedemo.model.StudentFullInfo;
 import com.example.javaeedemo.service.StudentService;
 import com.example.javaeedemo.service.impl.StudentServiceImpl;
 
@@ -19,7 +20,7 @@ public class StudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Student> students = studentService.getAllStudents();
+        List<StudentFullInfo> students = studentService.getAllStudents();
         request.setAttribute("students", students);
         request.getRequestDispatcher("/students.jsp").forward(request, response);
     }
